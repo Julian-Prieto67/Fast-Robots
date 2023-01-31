@@ -8,6 +8,13 @@
 @import url(http://fonts.googleapis.com/css?family=Roboto:400,300,100,500,700);
 @import url(http://fonts.googleapis.com/css?family=Roboto+Condensed:400,300,700);
 @import url(http://fonts.googleapis.com/css?family=Glegoo);
+
+.special-one {
+  color: red
+}
+.logo{
+  height: 40px;
+}
 body {
   font-family: "Roboto", sans-serif;
 }
@@ -1116,7 +1123,7 @@ article {
 }
 
 .cd-headline.slide .cd-words-wrapper {
-  color: #02bdd5;
+  color: #000000;
 }
 
 ul.social-icons {
