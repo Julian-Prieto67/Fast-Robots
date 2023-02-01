@@ -105,51 +105,80 @@ Global Page Section Start
   <div class="container">
     <div class="row">
       <div class="col-lg-12">
-        <div class="work-single-image">
+        <div style="display: flex; justify-content: center;"class="work-single-image">
           <!-- Work Single Image -->
           <img style="height: 200px"src="images/portfolio/lab1-boardpic.jpeg" alt="work-single-image">
         </div>
       </div>
     </div>
     <div class="row">
-      <div class="col-lg-8">
+      <div class="col-lg-12">
         <!-- work single Content -->
         <div class="work-single-content">
-          <h3>The Artemis</h3>
+          <h3>THE ARTEMIS</h3>
           <p>
           
             
           </p>
           <!-- Blockquote -->
-          <blockquote>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt labore
-            et
-            dolore magna aliqua. ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-            ex ea commodo.</blockquote>
-          <p>Consequuntur magni dolores ratione voluptatem.sequi nesciunt neque porro quisquam est dolorem ipsum quia
-            dolor sit amet consectetur adipisci velit.lorem ipsum dolor sit amet consectetur adipisicing elit
-            sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ut enim ad minim veniam quis nostrud
-            exercitation ullamco laboris nisi ut aliquip commodo consequat. </p>
-          <p>Reprehenderit in voluptate velit esse cillum dolore fugiat nulla pariatur. Excepteur sint occaecat
-            cupidatat
-            non proident. sunt in culpa qui officia deserunt mollit anim id est laborum. Sed ut perspiciatis
-            unde omnis iste natus.</p>
+          <blockquote> 
+            The Artemis board can be found <a href="https://www.sparkfun.com/products/15443">here</a>.
+          </blockquote>
+            <h2 style=" text-align: center">
+            INTRODUCTION 
+          </h2>
+          <p>The main goal of <a href="https://cei-lab.github.io/ECE4960-2022/Lab1.html">Lab 1</a> was to become acquainted with the microcontroller that would be 
+            used for the duration of the class, the Artemis. By using the built in example functions and the helpful guide
+          for installing the necessary libraries and support, I was able to sucessfully execute basic scripts on the Artemis.</p>
+          <h2 style="text-align: center">SETUP</h2> 
+          <p>
+            In order to prepare for this lab, all that I needed to do was install <a href="https://www.arduino.cc/en/software">Arduino IDE 2.0.3</a>.
+            using the instructions I found <a href"https://learn.sparkfun.com/tutorials/artemis-development-with-arduino?_ga=2.30055167.1151850962.1594648676-1889762036.1574524297&_gac=1.19903818.1593457111.Cj0KCQjwoub3BRC6ARIsABGhnyahkG7hU2v-0bSiAeprvZ7c9v0XEKYdVHIIi_-J-m5YLdDBMc2P_goaAtA4EALw_wcB">here</a>
+            I was able to download and implement board support for the Artemis nano on Arduino IDE.  
+          </p>
+          <p>
+            I had an additional problem where my board was not being recognized by my computer. The lab TA's were very helpful in resolving 
+            this issue and it was discovered that I needed to install an additional driver found  <a href="https://learn.sparkfun.com/tutorials/how-to-install-ch340-drivers#drivers-if-you-need-them">here</a>.
+          </p>
+          <h2 style="text-align: center">INSTRUCTIONS</h2> 
+          <p>
+            By installing the new drivers, my device could now recognize the port for the Artemis board. Following the lab instructions,
+            I opened and uploaded the Blink.ino file to my board to ensure proper connectivity and functionality. To do this I went
+            under File > Examples > Built-in Examples > 0.1 Basics > Blink. 
+          </p>
+          <iframe width="320" height="560" src="https://www.youtube.com/embed/FSoBN_Jkaac" title="Julian Prieto Lab 1: Blink" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
         </div>
-      </div>
-      <div class="col-lg-4">
-        <!-- sidebar -->
-        <div class="work-single-sidebar">
-          <h5>Clients</h5>
-          <h6>Julia Robertson</h6>
-          <h5>date</h5>
-          <h6>November 20, 2017</h6>
-          <h5>category</h5>
-          <h6>Investment, Business</h6>
-          <h5>locations</h5>
-          <h6>1201 park street, Avenue, Dhaka</h6>
+        <h2 style="text-align: center">SERIAL COMMUNICATION</h2> 
+          <p>
+            Similar to the blink file, all I needed to do to test the serial communcation to the board was go under
+            File > Examples > Examples for RedBoard Artemis Nano > Apollo3 > Example04_Serial. Using this built-in code,
+            I was able to ensure that my Artemis could send and receive information through Serial communication. Additionally, 
+            I had to change the Baud rate on my terminal to match the 115200 needed in order to see the communication.
+          </p>
+          <iframe width="320" height="560" src="https://www.youtube.com/embed/iJPd743oKNU" title="Julian Prieto Lab 1: Serial" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+          <h2 style="text-align: center">ANALOG READ</h2> 
+          <p>
+            Next up was testing the on-board temperature sensor. To do this I used the Example02_AnalogRead.ino file from 
+            File > Examples > Examples for RedBoard Artemis Nano > Apollo3 > Example02_AnalogRead. I observed the starting 
+            temperature to be around the range of 32000, but when I put my hand on it, the number increased to the 33500 value range.
+            This observed change proved the sensors functionality worked as intended.
+          </p>
+          <iframe width="320" height="560" src="https://www.youtube.com/embed/GvWYrofY8Oo" title="Julian Prieto Lab 1: Analog Read" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+          <h2 style="text-align: center">MICROPHONE</h2> 
+          <p>
+            The final feature to be tested was the on-board microphone. I utilize the pre-written file Example1_MicrophoneOutput
+            under the path File > Examples >  Examples for RedBoard Artemis Nano > PDM > Example1_MicrophoneOutput. This program returns the 
+            loudest frequency heard by the microphone and by whistling three times I test the accuracy and responsiveness of the sensor.
+            Each whistle decreases in pitch and as a result the loudest frequency decreases. 
+          </p>
+          <iframe width="320" height="560" src="https://www.youtube.com/embed/lcyRlKbnd58" title="Julian Prieto Lab 1: Microphone" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+          <h2 style="text-align: center">CONCLUSION</h2> 
+          <p>
+            The Reboard Artemis nano has many interesting features that I've ensured work. This lab helped me familiarize myself with the
+             micro controller and the debugging process. I'm very excited to work with this board to complete the various other
+            labs this semester. 
+          </p>
         </div>
-      </div>
-      <div class="col-lg-12">
-        <a class="btn btn-dafault btn-work hvr-bounce-to-right" href="#">get this work</a>
       </div>
     </div>
   </div>
@@ -158,12 +187,7 @@ Global Page Section Start
 
 <section class="works works-fit">
   <div class="container">
-    <h2 class="subtitle">Some Of Our Features Works</h2>
-    <p class="subtitle-des">
-      Aliquam lobortis. Maecenas vestibulum mollis diam. Pellentesque auctor neque nec urna. Nulla sit amet est. Aenean
-      posuere
-      <br> tortor sed cursus feugiat, nunc augue blandit nunc, eu sollicitudin urna dolor sagittis lacus.
-    </p>
+    <h2 class="subtitle">Other Labs</h2>
     <div class="row">
       <div class="col-md-3 col-sm-6">
         <figure class="wow fadeInLeft animated portfolio-item animated" data-wow-duration="300ms" data-wow-delay="0ms"
@@ -172,8 +196,6 @@ Global Page Section Start
             <img src="images/portfolio/item-1.jpg" class="img-fluid" alt="portfolio items">
             <div class="overlay">
               <div class="buttons">
-                <a rel="gallery" title="Proin imperdiet augue et magna interdum hendrerit" class="fancybox"
-                  href="images/portfolio/item-1.jpg">Demo</a>
                 <a target="_blank" href="single-portfolio.html">Details</a>
               </div>
             </div>
@@ -181,11 +203,11 @@ Global Page Section Start
           <figcaption>
             <h4>
               <a href="#">
-                Dew Drop
+                TBD
               </a>
             </h4>
             <p>
-              Redesigne UI Concept
+              TBD
             </p>
           </figcaption>
         </figure>
@@ -198,8 +220,6 @@ Global Page Section Start
             <img src="images/portfolio/item-2.jpg" class="img-fluid" alt="portfolio items">
             <div class="overlay">
               <div class="buttons">
-                <a rel="gallery" title="Proin imperdiet augue et magna interdum hendrerit" class="fancybox"
-                  href="images/portfolio/item-2.jpg">Demo</a>
                 <a target="_blank" href="single-portfolio.html">Details</a>
               </div>
             </div>
@@ -207,11 +227,11 @@ Global Page Section Start
           <figcaption>
             <h4>
               <a href="#">
-                Bottle Mockup
+                TBD
               </a>
             </h4>
             <p>
-              Lorem ipsum dolor sit.
+              TBD
             </p>
           </figcaption>
         </figure>
@@ -224,8 +244,6 @@ Global Page Section Start
             <img src="images/portfolio/item-3.jpg" class="img-fluid" alt="">
             <div class="overlay">
               <div class="buttons">
-                <a rel="gallery" title="Proin imperdiet augue et magna interdum hendrerit" class="fancybox"
-                  href="images/portfolio/item-3.jpg">Demo</a>
                 <a target="_blank" href="single-portfolio.html">Details</a>
               </div>
             </div>
@@ -233,11 +251,11 @@ Global Page Section Start
           <figcaption>
             <h4>
               <a href="#">
-                Table Design
+                TBD
               </a>
             </h4>
             <p>
-              Lorem ipsum dolor sit amet.
+              TBD
             </p>
           </figcaption>
         </figure>
@@ -250,8 +268,6 @@ Global Page Section Start
             <img src="images/portfolio/item-4.jpg" class="img-fluid" alt="">
             <div class="overlay">
               <div class="buttons">
-                <a rel="gallery" title="Proin imperdiet augue et magna interdum hendrerit" class="fancybox"
-                  href="images/portfolio/item-4.jpg">Demo</a>
                 <a target="_blank" href="single-portfolio.html">Details</a>
               </div>
             </div>
@@ -259,11 +275,11 @@ Global Page Section Start
           <figcaption>
             <h4>
               <a href="#">
-                Make Up elements
+                TBD
               </a>
             </h4>
             <p>
-              Lorem ipsum dolor.
+              TBD
             </p>
           </figcaption>
         </figure>
