@@ -1,0 +1,21 @@
+void PIDCONTROL(){
+
+      if (millis() - previousCollectionTime > COLLECTIONTIME)
+      {
+        storeData();
+      }
+      
+      updateSensors();
+      errorm = REFERENCE - yaw;
+
+      P =  Kp*(errorm);
+
+      moveLM(baseSpeed+P*(-1));
+      moveRM(baseSpeed+P);  
+      if(millis() - Time[0] >8000)
+      {
+        doPID = false;
+        sendSensors();
+        coast();
+      }      
+}
