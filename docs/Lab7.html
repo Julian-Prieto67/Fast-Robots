@@ -124,7 +124,7 @@ Global Page Section Start
             <p>One key limiter of the speed of our robot so far is the time of flight sensors. At higher speeds, the
               sensors can't update fast enough to keep up with the changes. To fix this,
               I'll take a step away from deterministic robotics and embrace the probabilistic world we live in. Through
-              many informative lectures, I've learned that the best way to make problamatic sensors better is to
+              many informative lectures, I've learned that one of the best ways to make problamatic sensors better is to
               implement a Kalman Filter.
               This filter takes a model determined and derived from simple dynamics, and averages this model against the
               numbers I'll gather from my sensors. This means the bot is about to infer its distance even when it can't
@@ -174,51 +174,66 @@ Global Page Section Start
             <h2 style="text-align: center">KALMAN FILTER SANITY CHECK</h2>
             <p>
               The Kalman filter works by updating a state, x, that contains estimates of the current position x[0] and
-              speed x[1]. I also need to initialize some starting uncertainty on each of these values.
-              To test that I did the right algorithm I can
-              run the Kalman Filter on any distance data that I've collected so far. Below is the same distance data
-              with kalman filter estimates overlayed on it and the code used.
+              speed x[1] and a sigma that holds the current uncertainty. To start, I need to initialize some starting
+              uncertainty on each value in the state.
+              To test that I did the right algorithm I can run the Kalman Filter on any distance data that I've
+              collected so far.
+              Below is the same distance data
+              with kalman filter estimates overlayed on it (dots are the values that the bot would see) followed by the code used.
             </p>
             <img style="width: 350px" src="lab7folder\workingKF.PNG">
-            <link rel="stylesheet" href="https://github.githubassets.com/assets/gist-embed-3f9a3834048b.css">
+            <script src="https://gist.github.com/Julian-Prieto67/0388d745634cdef0e0074a8acbc6a649.js"></script>
             <p>
               The uncertainties used as the basis of the estimate can also be seen in the code. Changing these
               uncertainties mean the Kalman filter will weight inputs differently. Increasing sigma 1 or 2 results in
-              this (σ<sub>1</sub> = 100 σ<sub>2</sub> = 100). 
+              this (σ<sub>1</sub> = 100 σ<sub>2</sub> = 100 σ<sub>3</sub> = 1).
             </p>
             <img style="width: 350px" src="lab7folder\distrustmodel.PNG">
             <p>
-              By making the model uncertainties so high, we're essentially saying there is a high probability that the model
-              we made is inaccurate. By doing so, the filter trusts the sensor readings the most. By increasing sigma 3 we see
-              the following. (σ<sub>3</sub> = 100)
+              By making the model uncertainties so high, we're essentially saying there is a high probability that the
+              model
+              we made is inaccurate. By doing so, the filter trusts the sensor readings the most. This can be bad at the first and last time
+              steps where the model could be best used to interpolate points. By increasing sigma 3
+              we see
+              the following. (σ<sub>3</sub> = 100 σ<sub>1</sub> = 1 σ<sub>2</sub> = 1)
             </p>
             <img style="width: 350px" src="lab7folder\sigma3100.PNG">
             <p>
-              This interesting result happens because the second sensor reading was unfortunately measured as a distance above the first (likely noise from the sensor as the robot was starting to move). This means that the
-              Kalman filter believes heavily that the velocity is positive. The more sensor readings that it gets, the more the model can correct itself, but as 
-              seen in the graph above, the heavy reliance on the previous state means it's very easy to drift away from sensor readings. 
+              The Kalman Filter now distrusts the sensor readings. After receiving a lot of sensor readings, the model will eventually adjust itself, 
+              however, focusing on our model will cause the filter to lag behind the sensor quite a bit. 
             </p>
             <h2 style="text-align: center">IMPLEMENTATION</h2>
             <p>
-              So far, all this implementation had been done on jupyter labs with previously collected sensor data and plenty of aid from Professor Kirsten, Anya Prabowo, Jonathan Jaramillo, and helpful tips from students. 
-              In order to make use of this algorithm, I had to implement it myself on the robot through Arduino. Luckilly for me, I've taken note that the filter itself is pretty robust. It can correct for most
-              inaccuracies I might give it. However, I had to design a quick P controller for distance in order to best gather data for the Kalman Filter. Below is the basic code and resulting data.  
+              So far, all this implementation had been done on jupyter labs with previously collected sensor data and
+              plenty of aid from Professor Kirsten, Anya Prabowo, Jonathan Jaramillo, and helpful tips from students.
+              In order to make use of this algorithm, I had to implement it myself on the robot through Arduino.
+              Luckilly for me, I've taken note that the filter itself is pretty robust. It can correct for most
+              inaccuracies I might give it. 
             </p>
-            <script style = "Gist; max-height: 250px; overflow-y: auto" src="https://gist.github.com/Julian-Prieto67/eb55bbee80c7eb647b9c7a284f52088a.js"></script>
+            <script style="Gist; max-height: 250px; overflow-y: auto"
+              src="https://gist.github.com/Julian-Prieto67/eb55bbee80c7eb647b9c7a284f52088a.js"></script>
             <link rel="stylesheet" href="https://github.githubassets.com/assets/gist-embed-3f9a3834048b.css">
-            
+
             <img style="width: 350px" src="lab7folder\KfData.PNG">
-            
-            <p> As seen above, the Kalman filter follows the ToF sensor data points too closely. By adjusting the sigma values I can fix that. Below is the graph after a small adjustment to the sigmas and a video of the PID controller using the Kalman filter to calculate error.</p>
-            <img style="width: 350px" src="lab7folder\betterKF.PNG">
-            <br>
-            
-            <iframe width="320" height="560" src="https://www.youtube.com/embed/0_6AG80G5Vw" title="Lab 7: Kf Implementation" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+            <img style="width: 350px" src="lab7folder\closer_look.png">
+            <p> 
+              The above left is the result of the Kalman Filter in action on the stunt from lab 6.
+              The Kalman filter does a fairly good job of interpolating data points between time of 
+              flight readings coming up to the wall (closer look on the right) and afterwards the model struggles to 
+              keep up with the random readings invoked by turning around. Below is 
+              a video showing just that. 
+            </p>
+
+            <iframe width="320" height="560" src="https://www.youtube.com/embed/0_6AG80G5Vw"
+              title="Lab 7: Kf Implementation" frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowfullscreen></iframe>
 
             <h2 style="text-align: center">CONCLUSION</h2>
             <p>
-              The Kalman filter is an excellent tool for fusing sensors with reality. Being able to use models from system dynamics to correct noisy sensor data has been my favorite subject-crossover ever and after implementing the algorithm myself on the arduino, I feel very familiar with the Kalman Filter. 
-              I hope that this filter will help me well for the next lab, where I will speed up the input to the motors and do tricks at full speed, then my kalman filter will be put to the test.
+              The Kalman filter is an excellent tool for fusing sensors with reality. Being able to use models from
+              system dynamics to correct noisy sensor data has been my favorite subject-crossover ever and after
+              implementing the algorithm myself on the arduino, I'm confident its implementation will benefit the robot.
             </p>
           </div>
         </div>
@@ -269,7 +284,7 @@ Global Page Section Start
             <figcaption>
               <h4>
                 <a href="#">
-                  Lab 6: PID Control 
+                  Lab 6: PID Control
                 </a>
               </h4>
               <p>
