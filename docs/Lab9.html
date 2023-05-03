@@ -180,8 +180,17 @@ Global Page Section Start
             <img style = "height: 300px" src="lab9Folder\map.PNG" class="img-fluid" alt="portfolio items">
             <img style = "height: 300px" src="lab9Folder\lines.PNG" class="img-fluid" alt="portfolio items">
             <p>
-              Admittedly the graph is far more crooked than I would've imagined. Regardless, this is the best that I could do
-              so far. The code used to generate all the above plots can be seen here:
+              This graph only looks as straight as it does because I corrected the angle of each sensor reading. Some initial error in 
+              allignment caused each set of data to be some constant angle off. The following numbers are the angle corrections for each point:
+              <ul>
+              <li>(-3,-2) = 9 degrees</li>
+              <li>(0,3) = 15 degrees</li>
+              <li>(5,-3) = -15 degrees</li>
+              <li>(5,3) = -17 degrees</li>
+              </ul>
+            </p>
+            <p>
+              Below is the code used for plotting each individual data set.
             </p>
             <script src="https://gist.github.com/Julian-Prieto67/9c8a842b6d16ac25b9cc86538021cae7.js"></script>
             <h2 style="text-align: center">CONCLUSION</h2>
