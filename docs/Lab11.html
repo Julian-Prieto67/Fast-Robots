@@ -132,7 +132,8 @@ Global Page Section Start
             <h2 style="text-align: center">IMPLEMENTATION</h2>
             <p>
               Gathering real world data is fairly straight forward and I've chosen to modify my code from <a href="https://cei-lab.github.io/FastRobots-2023/Lab9.html">Lab 9</a>. 
-              Below is the Arduino code used to gather the 18 data points containing bearing and distance needed for the update step of the Bayes Filter. 
+              Below is the Arduino code used to gather the 18 data points containing bearing and distance needed for the update step of the Bayes Filter. Below is the observation loop function used to replace
+              the virtual robots observation loop from <a href="https://cei-lab.github.io/FastRobots-2023/Lab10.html">Lab 10</a>
             </p>
             <script src="https://gist.github.com/Julian-Prieto67/a5af3dce780f82e2607a4b0bd11fdad7.js"></script>
             <p>
@@ -159,7 +160,10 @@ Global Page Section Start
               Generally, the results were great! The estimated position never strayed too far away from the actual point as seen from the images above. 
               One interesting observation of note was the occasional stray estimate due to the symmetry of the map and position of the robot. Looking at points (5,-3) and (0,3), they can seem somewhat similar depending on the orientation. 
               Because the bot doesn't start with much of a definite initial position, it sometimes got confused and thought it was on the wrong point. 
+              Below is a video depicting the process:
             </p>
+            <iframe width="320" height="560" src="https://www.youtube.com/embed/OyK-kxycngg" title="Lab 11: real localization" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+            
           </div>
         </div>
       </div>
