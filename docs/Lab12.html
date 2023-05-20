@@ -248,7 +248,9 @@ Global Page Section Start
             <p>
               The first clip was a very near complete run. The robot got all the way to the seventh waypoint before unfortunately running out of 
               battery. The second video depicts the final run that fully navigates the path. As seen in the video, the localization was incredibly powerful
-              at determining the location and even after a completely wrong localization belief, the robot could recover enough to complete the navigation.
+              at determining the location and even after a completely wrong localization belief (caused by similarities in the structure of the surroundings around the robot), the robot could recover enough to complete the navigation.
+              The solution I implemented was far more reliable than any open loop timed control algorithm due to the location feedback. I could've improved my solution by implementing some sort of
+              search algorithm or obstacle avoidance routine but I felt it unnecessary due to the distance between waypoints. 
             </p>
             <h2 style="text-align: center">CONCLUSION</h2>
             <p>
